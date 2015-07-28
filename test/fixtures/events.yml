@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  start_date: 2015-07-27 14:14:54
+  end_date: 2015-07-27 14:14:54
+  invite_only: false
+  creator_uid: MyString
+  location: MyString
+
+two:
+  description: MyText
+  start_date: 2015-07-27 14:14:54
+  end_date: 2015-07-27 14:14:54
+  invite_only: false
+  creator_uid: MyString
+  location: MyString
