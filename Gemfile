@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem "devise"
 gem 'omniauth-facebook'
+gem "koala", "~> 2.0"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'

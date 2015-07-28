@@ -5,6 +5,11 @@ class FriendshipsController < ApplicationController
   # GET /friendships.json
   def index
     @friendships = Friendship.all
+   if user_signed_in?
+      Koala.config.api_version = 'v2.0'
+    @graph = Koala::Facebook::API.new(session["token"])
+    @friends = @graph.get_connections("me", "friends")
+    end
   end
 
   # GET /friendships/1
