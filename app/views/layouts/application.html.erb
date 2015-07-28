@@ -31,24 +31,35 @@
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
           <span class="sr-only">Toggle navigation</span>
-
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
         </button>
-
+        <a href="/events" class="navbar-brand">Rabble</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li><a href="/events">events</a></li>
+
+          <!-- <li><a href="/public_events">Public Events</a></li> -->
+          <% if user_signed_in? %>
+
+
+
+          <% end %>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-            <li><a href="/users/edit"><%= current_user.email %></a></li>
+            <li><a href="/users/edit"><%= current_user.first_name %></a></li>
             <li><a href="/users/sign_out" data-method="delete">Sign out</a></li>
           <% else %>
-            <li><a href="/users/sign_up">Sign up</a></li>
-            <li><a href="/users/sign_in">Sign in</a></li>
+          <li>
+            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+            </li>
+
+            <li><a href="/users/sign_up">Sign Up</a></li>
           <% end %>
         </ul>
       </div>
@@ -72,6 +83,5 @@
 
     <%= yield %>
   </div>
-  <footer></footer>
 </body>
 </html>
