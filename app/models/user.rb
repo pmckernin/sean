@@ -5,6 +5,35 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
 
+
+  #has_many :friend_requests_as_sender, :class_name => "Friendship", :foreign_key => "sender_uid"
+  #has_many :friend_requests_as_sender_accepted, -> { accepted }, :class_name => "Friendship", :foreign_key => "sender_uid"
+  #has_many :sent_friends, :through => :friend_requests_as_sender_accepted, :source => :receiver
+
+  #has_many :friend_requests_as_receiver, :class_name => "Friendship", :foreign_key => "receiver_uid"
+  #has_many :friend_requests_as_receiver_accepted, -> { accepted }, :class_name => "Friendship", :foreign_key => "receiver_uid"
+  #has_many :received_friends, :through => :friend_requests_as_receiver_accepted, :source => :sender
+
+
+def sent_friends
+  Friendship.where(:sender_uid => self.uid, :accepted => true)
+
+end
+
+def recieved_friends
+  Friendship.where(:reciever_uid => self.uid, :accepted => true)
+
+end
+
+  def friends
+    friend_uids = []
+    friend_uids = friend_ids + self.sent_friends.pluck(:uid)
+    friend_uids = friend_ids + self.received_friends.pluck(:uid)
+
+    return User.where(:uid => friend_uids)
+  end
+
+
 def self.from_omniauth(auth)
 
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

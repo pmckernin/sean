@@ -2,10 +2,10 @@
 
 <h1>Listing Friendships</h1>
 
-<div><% @friends.each  do |friend|%>
+<div><%# @friends.each  do |friend|%>
   <ul>
-    <li><%= friend.inspect %></li>
-    <% end %>
+    <li><%#= friend.inspect %></li>
+    <% #end %>
   </ul>
 </div>
 <table>
@@ -22,8 +22,8 @@
   <tbody>
     <% @friendships.each do |friendship| %>
       <tr>
-        <td><%= friendship.sender_uid %></td>
-        <td><%= friendship.reciever_uid %></td>
+        <td><%= friendship.sender.name %></td>
+        <td><%= friendship.reciever.name %></td>
         <td><%= friendship.accepted %></td>
         <td><%= link_to 'Show', friendship %></td>
         <td><%= link_to 'Edit', edit_friendship_path(friendship) %></td>

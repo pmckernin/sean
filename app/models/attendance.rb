@@ -1,7 +1,8 @@
 class Attendance < ActiveRecord::Base
 
   def user
-    User.find(self.user_uid)
+   user =  User.where(:uid => user_uid)
+   user.first
   end
 
 belongs_to :event

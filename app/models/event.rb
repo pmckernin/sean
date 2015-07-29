@@ -4,8 +4,9 @@ class Event < ActiveRecord::Base
   has_many :comments
 
 
-  def user
-    User.find(self.user_uid)
+  def creator
+    creator = User.where(:uid => creator_uid)
+    creator.first
   end
 
 

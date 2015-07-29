@@ -15,8 +15,8 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.event_id %></td>
-        <td><%= comment.user_uid %></td>
+        <td><%= comment.event.location %></td>
+        <td><%= comment.user.name %></td>
         <td><%= comment.content %></td>
         <td><%= link_to 'Show', comment %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
