@@ -17,5 +17,8 @@ def users_who_are_attending
   return User.where(:uid => user_uids)
 end
 
+def export
+  return self.as_json
+end
 
 end

@@ -84,6 +84,11 @@ def events_user_is_attending
   return Event.where(:id => event_ids)
 end
 
+def export
+
+
+  return self.as_json
+end
 
 #Recieves the following info from facebook when a new user is created
 def self.from_omniauth(auth)

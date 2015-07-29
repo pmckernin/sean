@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+
+<strong>Json Data</strong>
+
+<%= @user.export %>
+
 <p>
   <strong>First name:</strong>
   <%= @user.first_name %>
@@ -37,7 +42,13 @@
 
 <p>
 <strong>Events that are available to me</strong>
-  <%= @user.events_that_are_available_to_me.inspect%>
+  <% @user.events_that_are_available_to_me.each do |event|%>
+<%= event.export%>
+<% event.users_who_are_attending.each do |user| %>
+<%= user.export %>
+<% end %>
+<% end %>
+
 </p>
 
 <p>
