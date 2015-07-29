@@ -16,19 +16,19 @@ class User < ActiveRecord::Base
 
 
 def sent_friends
-  Friendship.where(:sender_uid => self.uid, :accepted => true)
+   Friendship.where(:sender_uid => self.uid, :accepted => true)
 
 end
 
-def recieved_friends
+def received_friends
   Friendship.where(:reciever_uid => self.uid, :accepted => true)
 
 end
 
   def friends
     friend_uids = []
-    friend_uids = friend_ids + self.sent_friends.pluck(:uid)
-    friend_uids = friend_ids + self.received_friends.pluck(:uid)
+    friend_uids = friend_uids + self.sent_friends.pluck(:reciever_uid)
+    friend_uids = friend_uids + self.received_friends.pluck(:sender_uid)
 
     return User.where(:uid => friend_uids)
   end

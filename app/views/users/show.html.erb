@@ -12,7 +12,10 @@
 
 <p>
   <strong>Friends:</strong>
-  <%=raise @user.friends.inspect %>
+
+  <%@user.friends.each do |friend| %>
+<li><%= friend.name %></li>
+<% end %>
 </p>
 
 <p>
