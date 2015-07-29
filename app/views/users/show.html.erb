@@ -10,10 +10,12 @@
   <%= @user.last_name %>
 </p>
 
-<p>
-  <strong>Friends:</strong>
 
-  <%@user.friends.each do |friend| %>
+
+<p>
+  <strong>Friends Requets:</strong>
+
+  <%@user.pending_sent_friend_requests.each do |friend| %>
 <li><%= friend.name %></li>
 <% end %>
 </p>
