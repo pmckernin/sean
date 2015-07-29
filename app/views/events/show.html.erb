@@ -5,6 +5,12 @@
   <%= @event.description %>
 </p>
 
+
+<p>
+  <strong>Users who are attending the event</strong>
+  <%= @event.users_who_are_attending.inspect %>
+</p>
+
 <p>
   <strong>Start date:</strong>
   <%= @event.start_date %>
@@ -14,6 +20,8 @@
   <strong>End date:</strong>
   <%= @event.end_date %>
 </p>
+
+
 
 <p>
   <strong>Invite only:</strong>

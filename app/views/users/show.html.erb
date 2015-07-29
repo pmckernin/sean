@@ -30,11 +30,19 @@
   <%= @user.image %>
 </p>
 
-
+<p>
+<strong>Events attending</strong>
+  <%= @user.events_user_is_attending.inspect%>
+</p>
 
 <p>
-  <strong>Uid:</strong>
-  <%= @user.uid %>
+<strong>Events that are available to me</strong>
+  <%= @user.events_that_are_available_to_me.inspect%>
+</p>
+
+<p>
+  <strong>Events I created</strong>
+  <%= @user.events_hosting.inspect %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

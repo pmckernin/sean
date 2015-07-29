@@ -10,4 +10,12 @@ class Event < ActiveRecord::Base
   end
 
 
+def users_who_are_attending
+  user_uids = []
+  event_attendors = Attendance.where(:event_id => self.id)
+  user_uids = event_attendors.pluck(:user_uid)
+  return User.where(:uid => user_uids)
+end
+
+
 end

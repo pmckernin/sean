@@ -48,6 +48,43 @@ def pending_sent_friend_requests
 end
 
 
+#A list of events which current user created
+def events_hosting
+   Event.where(:creator_uid => self.uid)
+end
+
+
+#Returns list all events that freinds are attending
+def events_friends_attending
+friend_uids = self.friends.pluck(:uid)
+events_attending = Attendance.where(:user_uid => friend_uids)
+event_id = events_attending.pluck(:event_id)
+return Event.where(:id => event_id)
+end
+
+#Returns a list of all events that confirmed friends created
+def events_friends_created
+friend_uids = self.friends.pluck(:uid)
+return Event.where(:creator_uid => friend_uids)
+end
+
+#Returns all Events which are available for attendance
+def events_that_are_available_to_me
+events_i_can_see = []
+events_i_can_see = events_i_can_see + self.events_friends_attending.pluck(:id)
+events_i_can_see = events_i_can_see + self.events_friends_created.pluck(:id)
+return Event.where(:id => events_i_can_see)
+end
+
+
+#Returns all events that I have created an Attendance
+def events_user_is_attending
+  events = Attendance.where(:user_uid => self.uid)
+  event_ids = events.pluck(:event_id)
+  return Event.where(:id => event_ids)
+end
+
+
 #Recieves the following info from facebook when a new user is created
 def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
