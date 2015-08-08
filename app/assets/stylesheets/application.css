@@ -1,15 +1,665 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* ==========================================================================
+   My stylesheet. So organization.
+
+   Order of the things:
+    Resets
+    Layout
+    Styles
+    Animations
+   ========================================================================== */
+
+/* ==========================================================================
+   Resets
+   ========================================================================== */
+
+/* meyerweb.com: Reset CSS
+
+   http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+   ========================================================================== */
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    blockquote, q {
+        quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+
+
+/* my reset
+   ========================================================================== */
+
+    * {
+        box-sizing: border-box; }
+    body, html {
+        height: 100%; }
+
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+/* Utilities
+   ========================================================================== */
+
+    /**
+     * clearfix
+     *
+     * Used to clear objects that have been floated.
+     *  this is to avoid overflow issues.
+     */
+
+        .clearfix:after {
+            content: '';
+            display: table;
+            clear: both; }
+
+            .clearfix .left {
+                float: left;
+                text-align: left; }
+
+            .clearfix .right {
+                float: right;
+                text-align: right; }
+
+    /**
+     * centerv; centerh; center
+     *
+     * Classes to be used on elements that need to be
+     *  centered on the screen.
+     */
+
+        .centerv {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%); }
+        .centerh {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%); }
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); }
+
+
+/* General Layout
+
+   SPA layout with a fixed left aligned sidebar/nav, and an overlay.
+
+   This creates a body of full height and width with a fixed sidebar to the
+     left of the page. It also contains an overlay to be used for
+     notifications/forms.
+
+   Example HTML:
+
+   <div class="outer">
+       <div class="page-navbar"></div>
+       <main class="page-content"></main>
+       <div class="page-overlay"></div>
+   </div>
+   ========================================================================== */
+
+    /**
+     * Outer container
+     */
+
+    .outer {
+        position: relative;
+
+        overflow: hidden;
+        width: 100%;
+        height: 100%; }
+
+    /**
+     * Page navbar
+     */
+
+    .page-navbar {
+        position: fixed;
+        z-index: 998;
+        top: 0;
+        left: 0;
+
+        width: 125px;
+        height: 100%; }
+
+    /**
+     * Page content
+     */
+
+    .page-content {
+        position: relative;
+        z-index: 997;
+
+        height: 100%;
+        margin-left: 125px; }
+
+    /**
+     * Page overlay
+     */
+
+    .page-overlay {
+        position: absolute;
+        z-index: 999;
+        left: 0;
+        bottom: 0;
+
+        width: 100%;
+        height: 100%; }
+
+    /**
+     * Media queries
+     */
+
+    @media screen and (max-width: 1023px) {
+        .page-navbar {
+            z-index: 996;
+            width: 100%; }
+        .page-content {
+            position: absolute;
+            top: 73px;
+            bottom: 0;
+            width: 100%;
+            height: auto;
+            margin-left: 0; } }
+    @media screen and (max-width: 767px) {
+        .page-content {
+            top: 54px;
+            left: 0; } }
+
+
+/* Navbar content
+   ========================================================================== */
+
+    .page-navbar {
+        transition: all ease 0.3s; /* buggy on resize */ }
+
+        .navbar-root,
+        .navbar-menu {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            overflow: hidden; }
+
+        .navbar-root {
+            z-index: 1;
+            left: 0;
+
+            width: 125px; }
+
+            .navbar-root > ul {
+                width: 100%;
+                text-align: center; }
+
+                .navbar-root .tab {
+                    position: relative;
+
+                    display: block;
+                    padding: 15px 0;
+
+                    cursor: pointer; }
+
+                    .tab > .icon {
+                        display: block;
+                        overflow: hidden;
+                        margin: 0 auto;
+                        width: 16px;
+
+                        font-size: 0;
+                        background-image: url(../img/sb-sprite.png); }
+
+                    .tab-menu > .icon {
+                        height: 12px;
+                        margin: 2px auto;
+                        background-position: 0 0; }
+                    .tab-search > .icon {
+                        height: 16px;
+                        background-position: 0 -12px; }
+                    .tab-add > .icon {
+                        height: 16px;
+                        background-position: 0 -28px; }
+                    .tab-events > .icon {
+                        height: 15px;
+                        margin: 1px auto 0;
+                        background-position: 0 -44px; }
+                    .tab-close > .icon {
+                        height: 15px;
+                        margin: 1px auto 0;
+                        background-position: 0 -59px; }
+
+        .navbar-menu {
+            right: 0;
+            width: 316px; }
+
+            .menu {
+                margin-left: 40px;
+                text-align: left; }
+
+                .menu a {
+                    font-size: 20px;
+                    line-height: 42px;
+                    transition: all ease 0.3s; }
+
+                .sub-menu { }
+
+                    .sub-menu > ul {
+                        display: block;
+                        overflow: hidden;
+
+                        height: 168px;
+                        margin-left: 15px;
+                        margin-bottom: 15px;
+
+                        transition: all ease 0.3s; }
+
+                        .sub-menu > .hide-sub-menu {
+                            height: 0;
+                            margin-bottom: 0; }
+
+                        .sub-menu > ul a {
+                            color: #999; }
+
+                .menu a:hover,
+                .menu a.current {
+                    color: #e3b51d;  } /*#fa0;*/
+
+        .navbar-close {
+            z-index: 1;
+            display: none; }
+
+        .page-content.show-menu {
+            margin-left: 441px; }
+        .page-navbar.show-menu {
+            width: 441px; }
+
+            .page-navbar.show-menu .navbar-close {
+                display: block;
+
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 441px; }
+
+    /**
+     * Media queries
+     */
+
+    @media screen and (max-width: 1023px) {
+        .navbar-root {
+            width: 100%;
+            height: 73px; }
+            .navbar-root > ul {
+                height: 100%; }
+                .navbar-root > ul li {
+                    position: absolute;
+                    top: 0;
+                    display: block;
+                    height: 100%; }
+                .navbar-root > ul li:nth-child(1) {
+                    z-index: 10;
+                    left: 0;
+                    width: 53px; }
+                .navbar-root > ul li:nth-child(2) {
+                    z-index: 9;
+                    left: 0;
+                    width: 50%;
+                    padding: 0 44px 0 53px; }
+                .navbar-root > ul li:nth-child(3) {
+                    z-index: 9;
+                    right: 0;
+                    width: 50%;
+                    padding: 0 53px 0 44px; }
+                .navbar-root > ul li:nth-child(4) {
+                    z-index: 10;
+                    right: 0;
+                    width: 53px; }
+                    .navbar-root .tab {
+                        top: 0;
+                        height: 100%;
+                        margin: 0 auto;
+                        padding: 0; }
+                        .navbar-root .tab:before {
+                            content: '';
+                            height: 100%;
+                            display: inline-block;
+                            vertical-align: middle; }
+                        .tab > .icon {
+                            display: inline-block;
+                            vertical-align: middle; }
+        .navbar-menu {
+            left: -316px; }
+            .menu {
+                top: auto;
+                margin: 100px 0 0 60px;
+                transform: none; }
+        .page-content.show-menu {
+            margin-left: 316px; }
+        .page-navbar.show-menu {
+            z-index: 998;
+            width: 100%;
+            margin-left: 316px; }
+            .page-navbar.show-menu .navbar-close {
+                left: 316px; } }
+    @media screen and (max-width: 767px) {
+        .navbar-root {
+            transition: all ease 0.3s;
+            height: 54px; }
+        .navbar-menu {
+            transition: all ease 0.3s;
+            position: fixed;
+            right: 30%;
+            left: 0px;
+            width: 0; }
+            .menu {
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 60px 0 0 0; }
+                .menu a {
+                    font-size: 16px;
+                    line-height: 36px; }
+                .sub-menu ul {
+                    height: 144px; }
+        .page-content.show-menu {
+            position: absolute;
+            left: 70%;
+            margin-left: 0; }
+        .page-navbar.show-menu {
+            margin-left: 0; }
+            .page-navbar.show-menu .navbar-root,
+            .page-navbar.show-menu .navbar-close {
+                left: 70%; }
+            .page-navbar.show-menu .navbar-menu {
+                width: 70%; } }
+
+
+/* Main page content
+   ========================================================================== */
+
+    .page-content {
+        transition: all ease 0.3s; }
+
+        .filters {
+            transition: all ease 0.3s; /* buggy on resize */
+            background: #f3f3f3;
+            border-bottom: 1px solid #e1e1e1;
+
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 125px;
+
+            overflow: hidden;
+            height: 50px; }
+
+            .filters ul {
+                transition: all ease 0.3s;
+                display: block;
+                width: 100%;
+                text-align: center;
+                white-space: nowrap;
+                overflow: auto; }
+
+                .filters ul li {
+                    display: inline-block; }
+
+                    .filters ul li a {
+                        display: block;
+                        color: #1e2226;
+                        text-decoration: none;
+                        text-transform: uppercase;
+                        padding: 17px 10px 14px;
+                        font-size: 14px;
+                        font-weight: 600; }
+
+                    .filters .current {
+                        border-bottom: 4px solid #1e2226; }
+
+                .filters.show-menu {
+                    left: 441px; }
+
+        .content-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 100%; }
+
+            .content-wrapper header {
+                text-align: center; }
+
+                .content-wrapper header h2 {
+                    padding: 40px 0;
+                    font-size: 60px;
+                    font-weight: 800;
+                    text-transform: uppercase;
+                    position relative; }
+
+            .content {
+                text-align: center; }
+
+        .content-wrapper.filtered {
+            top: 50px; }
+
+
+    /**
+     * Event
+     */
+
+    .event {
+        position: relative;
+
+        display: inline-block;
+        overflow: hidden;
+        width: 556px; /* 614 */
+        height: 360px; /* 320, 426 */
+        margin: 20px; }
+
+        .event .attendees {
+            background-color: #fcc;
+
+            position: absolute;
+            left: 0;
+
+            width: 214px;
+            height: 100%; }
+
+            .attendees .guest-list {
+                margin-top: 20px; }
+
+                .guest-list li {
+                    height: 40px;
+                    margin-bottom: 20px; }
+
+                .guest-list a {
+                    position: relative;
+
+                    font-size: 15px;
+                    line-height: 40px; }
+
+                    .guest-list .avatar,
+                    .guest-list .fname {
+                        position: absolute; }
+
+                    .guest-list .fname {
+                        left: 70px; }
+
+                    .attendees .avatar {
+                        left: 20px;
+
+                        width: 40px;
+                        height: 40px;
+
+                        background-size: contain !important;
+                        border-radius: 20px; }
+
+                .attendees .attending {
+                    bottom: 20px; }
+
+                    .attending > div {
+                        margin-bottom: 10px; }
+
+                .attendees .arrow {
+                    position: absolute;
+                    top: 13px;
+                    right: -28px;
+
+                    width: 57px;
+                    height: 57px;
+
+                    background: #cfc;
+                    transform: rotate(45deg); }
+
+                .btn {
+                    background-color: #ccf;
+
+                    display: block;
+                    padding: 0 14px;
+
+                    font-size: 20px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                    line-height: 40px; }
+
+        .event .details {
+            background-color: #cfc;
+
+            position: absolute;
+            right: 0;
+            left: 214px;
+
+            height: 100%;
+            padding: 20px;
+            text-align: left; }
+
+            .details .where {
+                margin: 5px 0 20px;
+
+                line-height: 36px;
+                font-size: 30px;
+                font-weight: 700; }
+
+            .details .when {
+                margin-bottom: 20px;
+                font-size: 20px;
+                line-height: 25px; }
+
+            .details .comments {
+                padding-top: 20px;
+                text-align: center;
+                border-top: solid 1px #fff; }
+
+    /**
+     * Media queries
+     */
+
+    @media screen and (max-width: 1023px) {
+        .page-content { }
+            .filters {
+                top: 73px;
+                left: 0;
+                width: 100%; }
+            .filters.show-menu {
+                left: 316px; }
+            .content-wrapper header {
+                display: none; }
+            .event {
+                width: 280px; } }
+    @media screen and (max-width: 767px) {
+        .page-content { }
+            .filters {
+                top: 54px; }
+            .filters.show-menu {
+                left: 70%; } }
+
+
+/* Overlay content
+   ========================================================================== */
+
+    .page-overlay { }
+
+        .page-overlay .overlay-message {
+            font-size: 25px;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto 80px; }
+
+        .page-overlay .overlay-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+
+            margin: 0;
+            padding: 10px; }
+
+
+/* ==========================================================================
+   make all the things pretty
+   ========================================================================== */
+
+body {
+    font-family: 'Open Sans', sans-serif; }
+
+.page-navbar {
+    color: #fff; }
+    .page-navbar a {
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+        text-transform: uppercase; }
+    .navbar-root {
+        background: #1e2226; }
+    .navbar-menu {
+        background: #272d32; }
+.page-content {
+    background: #fff; }
+.page-overlay {
+    background: #fff;
+    opacity: 0.95;  }
+
+
+
+

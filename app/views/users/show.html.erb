@@ -1,20 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 
-<strong>Json Data</strong>
+<strong>User Json Data</strong>
 
 <%= @user.export %>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
 
 
 <p>
@@ -25,35 +14,30 @@
 <% end %>
 </p>
 
+
 <p>
-  <strong>Name:</strong>
-  <%= @user.name %>
+{"user" : { "events" :
+  <%= @user.events_user_is_attending %>
+}
+}
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @user.image %>
-</p>
-
-<p>
-<strong>Events attending</strong>
-  <%= @user.events_user_is_attending.inspect%>
-</p>
-
-<p>
-<strong>Events that are available to me</strong>
+{"available": [
+<p>"events":[
   <% @user.events_that_are_available_to_me.each do |event|%>
-<%= event.export%>
-<% event.users_who_are_attending.each do |user| %>
-<%= user.export %>
-<% end %>
-<% end %>
+
+
+<%= event.export %>,
+"users" : <%= event.users_who_are_attending %>
 
 </p>
+<% end %>
+]]}
 
 <p>
   <strong>Events I created</strong>
-  <%= @user.events_hosting.inspect %>
+  <%= @user.events_hosting %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

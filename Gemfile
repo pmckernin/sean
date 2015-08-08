@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
+
 gem "devise"
 gem 'omniauth-facebook'
 gem "koala", "~> 2.0"
-
+gem 'json', '~> 1.8.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use sqlite3 as the database for Active Record

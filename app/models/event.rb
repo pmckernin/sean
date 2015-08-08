@@ -18,7 +18,7 @@ def users_who_are_attending
 end
 
 def export
-  return self.as_json
+  return self.to_json
 end
 
 end

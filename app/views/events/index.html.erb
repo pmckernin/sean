@@ -1,38 +1,60 @@
-<p id="notice"><%= notice %></p>
+<div class="filters">
+  <ul>
+    <li><a href="#/">All</a></li>
+    <li><a href="#/available">Available</a></li>
+    <li><a href="#/attending">Attending</a></li>
+    <li><a href="#/hosting">Hosting</a></li>
+  </ul>
+</div>
+<div class="content-wrapper filtered">
 
-<h1>Listing Events</h1>
+<% if user_signed_in? %>
+  <header>
+    <h2>Events</h2>
+  </header>
+  <div class="content">
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Invite only</th>
-      <th>Creator uid</th>
-      <th>Location</th>
+<% current_user.events_that_are_available_to_me.each do |event| %>
 
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <div class="event">
+      <div class="attendees">
+        <ul class="guest-list">
+          <li class="host">
+            <a href="#">
+              <div class="avatar" style="background: url(<%= event.creator.image %>)"></div>
+              <div class="fname"><%= event.creator.first_name.upcase %></div>
+            </a>
+          </li>
+            <% event.users_who_are_attending.first(3).each do |attendee| %>
+          <!-- first x users li repeat -->
+          <li class="attendee">
+            <a href="#">
+              <div class="avatar" style="background: url(<%= attendee.image %>)"></div>
+              <div class="fname"><%= attendee.first_name.upcase %></div>
+            </a>
+          </li>
+        <% end %>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.description %></td>
-        <td><%= event.start_date %></td>
-        <td><%= event.end_date %></td>
-        <td><%= event.invite_only %></td>
-        <td><%= event.creator.name%></td>
-        <td><%= event.location %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        </ul>
+        <div class="attending centerh">
+          <div><%= event.users_who_are_attending.count+1 %> Attending</div>
 
-<br>
+          <a class="btn btn-attend">Attend</a>
+        </div>
+        <div class="arrow"></div>
+      </div>
+      <div class="details">
+        <h3 class="where"><%= event.location %></h3>
+        <div class="when">
+          <p class="date"><%=event.start_date.strftime("%A, %b %d") %></p>
+          <p class="time"><%= event.start_date.strftime("%l:%m %p ")%> - <%= event.end_date.strftime("%l:%m %p ") %></p>
+        </div>
+        <!-- p if description -->
+        <div class="comments">Comments to be added vNext.</div>
+      </div>
+    </div>
+<% end %>
+<% end %>
 
-<%= link_to 'New Event', new_event_path %>
+  </div>
+</div>

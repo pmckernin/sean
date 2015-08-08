@@ -50,11 +50,11 @@ end
 
 #A list of events which current user created
 def events_hosting
-   Event.where(:creator_uid => self.uid)
+   Event.where(:creator_uid => self.uid).to_json
 end
 
 
-#Returns list all events that freinds are attending
+#Returns list all events that freinds are attending - goes into all events available
 def events_friends_attending
 friend_uids = self.friends.pluck(:uid)
 events_attending = Attendance.where(:user_uid => friend_uids)
@@ -62,7 +62,7 @@ event_id = events_attending.pluck(:event_id)
 return Event.where(:id => event_id)
 end
 
-#Returns a list of all events that confirmed friends created
+#Returns a list of all events that confirmed friends created - Goes into all events available
 def events_friends_created
 friend_uids = self.friends.pluck(:uid)
 return Event.where(:creator_uid => friend_uids)
@@ -81,13 +81,11 @@ end
 def events_user_is_attending
   events = Attendance.where(:user_uid => self.uid)
   event_ids = events.pluck(:event_id)
-  return Event.where(:id => event_ids)
+  return Event.where(:id => event_ids).to_json
 end
 
 def export
-
-
-  return self.as_json
+  return self.to_json
 end
 
 #Recieves the following info from facebook when a new user is created

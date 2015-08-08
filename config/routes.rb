@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  scope "/api" do
+    resources :events
+  end
+    devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :invites
   resources :attendances
   resources :users
   resources :events
   resources :friendships
   resources :comments
+
 
  root to: "events#index"
   # The priority is based upon order of creation: first created -> highest priority.
