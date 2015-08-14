@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<% if user_signed_in? %>
+
+<%current_user.friends.each do |friend| %>
+
+
+
+<div class ='friendship'>
+<div class="mask">
+  <div class ='image'>
+    <img src="<%= friend.image %>">
+  </div>
+  <div class ="first-name "> <%= friend.first_name + " " + friend.last_name.chars.first%></div>
+
+
+  <div class ="button">Remove Friendship</div>
+</div>
+</div>
+<% end %>
+<% end %>
+</body>
+</html>
+

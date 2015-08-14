@@ -1,18 +1,21 @@
+
+<div class="content-wrapper filtered">
 <div class="filters">
   <ul>
     <li><a href="#/">All</a></li>
     <li><a href="#/available">Available</a></li>
     <li><a href="#/attending">Attending</a></li>
     <li><a href="#/hosting">Hosting</a></li>
-  </ul>
-</div>
-<div class="content-wrapper filtered">
 
-<% if user_signed_in? %>
+
+</ul>
+</div>
+
   <header>
     <h2>Events</h2>
   </header>
   <div class="content">
+<% if user_signed_in? %>
 
 <% current_user.events_that_are_available_to_me.each do |event| %>
 
@@ -39,7 +42,26 @@
         <div class="attending centerh">
           <div><%= event.users_who_are_attending.count+1 %> Attending</div>
 
-          <a class="btn btn-attend">Attend</a>
+
+            <% if event.attendances.where(:user_uid => current_user.uid).exists? %>
+              <% event.attendances.where(:user_uid => current_user.uid).each do |attendance| %>
+            <%= link_to 'Destroy', attendance, :class =>"btn btn-attend", method: :delete %>
+            <% end %>
+            <% else %>
+
+
+          <%= form_for(@attendance) do |f| %>
+            <%= f.hidden_field :user_uid, :value => current_user.uid %>
+            <%= f.hidden_field :event_id, :value => event.id%>
+            <%= f.submit 'Attend', :class => "btn btn-attend"  %>
+            <% end %>
+
+
+          <% end %>
+
+
+
+
         </div>
         <div class="arrow"></div>
       </div>
@@ -47,7 +69,7 @@
         <h3 class="where"><%= event.location %></h3>
         <div class="when">
           <p class="date"><%=event.start_date.strftime("%A, %b %d") %></p>
-          <p class="time"><%= event.start_date.strftime("%l:%m %p ")%> - <%= event.end_date.strftime("%l:%m %p ") %></p>
+          <p class="time"><%= event.start_date.strftime("%l:%m%p ")%> - <%= event.end_date.strftime("%l:%m%p ") %></p>
         </div>
         <!-- p if description -->
         <div class="comments">Comments to be added vNext.</div>

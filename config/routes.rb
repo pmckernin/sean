@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :events
   resources :friendships
   resources :comments
-
+  get "/friends", :controller=>"friends", :action=>"index", :as=>"friends"
 
  root to: "events#index"
   # The priority is based upon order of creation: first created -> highest priority.

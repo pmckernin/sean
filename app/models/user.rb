@@ -81,7 +81,11 @@ end
 def events_user_is_attending
   events = Attendance.where(:user_uid => self.uid)
   event_ids = events.pluck(:event_id)
-  return Event.where(:id => event_ids).to_json
+  return Event.where(:id => event_ids)
+end
+
+def attending
+event = Attendance.where(:user_uid => self.uid)
 end
 
 def export
