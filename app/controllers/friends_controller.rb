@@ -4,5 +4,12 @@ class FriendsController < ApplicationController
     @friendship = Friendship.all
   end
 
+  def recommended
+
+  end
+
+  def pending
+
+  end
 
 end

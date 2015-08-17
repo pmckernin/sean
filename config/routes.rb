@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   get "/friends", :controller=>"friends", :action=>"index", :as=>"friends"
   get "/attending", :controller=>"events", :action=>"attending"
   get "/hosting", :controller=>"events", :action=>"hosting"
-
+  get "/Recommended", :controller=>"friends", :action=>"recommended"
+  get "/Pending", :controller=>"friends", :action=>"pending"
  root to: "events#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
