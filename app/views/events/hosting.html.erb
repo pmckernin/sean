@@ -17,7 +17,7 @@
   <div class="content">
 <% if user_signed_in? %>
 
-<% current_user.events_that_are_available_to_me.each do |event| %>
+<% current_user.events_hosting.each do |event| %>
 
     <div class="event">
       <div class="attendees">

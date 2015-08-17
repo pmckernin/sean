@@ -50,7 +50,7 @@ end
 
 #A list of events which current user created
 def events_hosting
-   Event.where(:creator_uid => self.uid).to_json
+   Event.where(:creator_uid => self.uid)
 end
 
 

@@ -13,6 +13,14 @@ class EventsController < ApplicationController
   def show
   end
 
+  def attending
+
+  end
+
+  def hosting
+    @attendance= Attendance.new
+  end
+
   # GET /events/new
   def new
     @event = Event.new
