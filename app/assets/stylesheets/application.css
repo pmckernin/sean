@@ -681,9 +681,7 @@ Everything relatating to the friendship tile
             border-width:1px;
             border-style: solid;
             border-color: black;
-            /*-webkit-box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6);
--moz-box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6);
-box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6); */
+
 
          }
          .friendship .image{
@@ -709,17 +707,6 @@ box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6); */
             font-size: 20px;
          }
 
-       /*  .friendship .last-name{
-            position:absolute;
-            left:40px;
-            top:170px;
-
-            height: 20px;
-            width:160px;
-
-            font-size: 20px
-         } */
-
          .friendship .button {
             position: absolute;
             left:12px;
@@ -739,5 +726,90 @@ box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6); */
          max-width: 100%;
          }
 
-         .
+
+/*=========================================================================
+Everything Relating to the New Event Form*/
+
+    .form-group .title{
+        position: inline;
+
+        height: 75px;
+        width: 100%;
+
+        font-size: 50px;
+        text-align: center;
+    }
+
+    .form-group .header{
+        position:inline;
+        height:50px;
+        width:100%;
+        margin-top: 25px;
+
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .form-group .starting-selector{
+        position: inline;
+        height: 150px;
+        width: 100%;
+        margin-left: 200px;
+    }
+
+    #selector-one{
+        position: absolute;
+            height:250px;
+            width: 200px;
+    }
+
+     #selector-two{
+        position: absolute;
+                left: 600px;
+
+        height:250px;
+        width: 200px;
+    }
+
+    #break-one{
+        position: absolute;
+        left: 550px;
+        height: 150px;
+        width:10px;
+        background-color: black;
+        border-radius: 10px;
+    }
+
+    #break-two{
+        position: absolute;
+        left: 850px;
+        height: 150px;
+        width:10px;
+        background-color: black;
+        border-radius: 10px;
+
+    }
+
+    #selector-three{
+        position: absolute;
+            left: 900px;
+
+        height:250px;
+        width: 200px;
+    }
+
+    .radio-selector-placement{
+        position:absolute;
+            left: 95px;
+
+        height: 10px;
+        width: 10px;
+    }
+
+    #create-button-placement{
+
+    }
+
+
+
 
