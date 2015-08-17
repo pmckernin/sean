@@ -424,7 +424,7 @@
             background: #f3f3f3;
             border-bottom: 1px solid #e1e1e1;
 
-            position: fixed;
+            position: inline-block;
             top: 0;
             right: 0;
             left: 125px;
@@ -666,32 +666,24 @@ Everything relatating to the friendship tile
 */
 
 
-.mask{
-    width:300px;
-    height:180px;
-    background-image:url('http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=68707692');
-    position:absolute;
-    z-index:1;
-    max-width: 100%;
-}
+
 
 .friendship{
             position: relative;
             display: inline-block;
             overflow: hidden;
-            height: 300px;
-            width: 180px;
-            border-top-left-radius: 60px;
-            border-top-right-radius: 60px;
+            height: 280px;
+            width: 175px;
+
             background: #fafbfb;
             margin-left: 40px;
             margin-top:40px;
             border-width:1px;
             border-style: solid;
             border-color: black;
-            -webkit-box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6);
+            /*-webkit-box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6);
 -moz-box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6);
-box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6);
+box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6); */
 
          }
          .friendship .image{
@@ -704,16 +696,15 @@ box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6);
 
             border-radius: 60px;
             overflow: hidden;
-            opacity: .5;
+
          }
 
          .friendship .first-name {
             position:absolute;
-
-            top: 150px;
-
+            top: 165px;
+            color:black;
             height: 20px;
-            width: 180px;
+            width: 175px;
             text-align: center;
             font-size: 20px;
          }
@@ -731,12 +722,13 @@ box-shadow: 10px 10px 36px 0px rgba(0,0,0,0.6);
 
          .friendship .button {
             position: absolute;
-            left:15px;
-            top:200px;
+            left:12px;
+            top:215px;
 
             height: 40px;
             width: 150px;
-
+            font-size: 20px;
+            color:black;
             background: grey;
 
             text-align: center;
