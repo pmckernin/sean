@@ -807,7 +807,10 @@ Everything Relating to the New Event Form*/
     }
 
     #create-button-placement{
-
+        width: 0px;
+        padding-top: 20px;
+        margin-left:46%;
+        margin-right: auto;
     }
 
 
