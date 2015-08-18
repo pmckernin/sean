@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<% if user_signed_in? %>
+<div class="content-wrapper filtered">
 
+<div class="filters">
+  <ul>
+    <li><a href="/Recommended">Recommended</a></li>
+    <li><a href="/Pending">Pending</a></li>
+    <li><a href="/friends">Current</a></li>
+</ul>
+</div>
+
+<%@friends.each do |friend| %>
+
+
+
+<div class ='friendship'>
+
+  <div class ='image'>
+    <img src="">
+  </div>
+  <div class ="first-name "> <%= friend['name']%></div>
+
+
+  <div class ="button">Request</div>
+
+</div>
+<% end %>
+<% end %>
+</body>
+</html>

@@ -1,23 +1,26 @@
 
 
 <div class = "container">
-  <form>
+  <form  >
+
     <div class="form-group">
      <div class = "title"> New Event  </div>
 
      <div class= "header"> Description </div>
      <div>
-      <label for="exampleInputEmail1"></label>
-      <input type="email" class="form-control text-center" id="exampleInputEmail1" placeholder="ex. My place, Local bar, Downtown, Movie Night">
+
+      <input type="text" class="form-control text-center" id="location" placeholder="ex. My place, Local bar, Downtown, Movie Night">
     </div>
 
     <div class = "header"> Starting </div>
+
 
     <div class = "starting-selector">
       <div id = "selector-one">
         <div class = "header">Now</div>
         <div class ="radio-selector-placement">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="<%= Time.now %>">
+          <input type="hidden" name="country" value="Norway">
         </div>
       </div>
 
@@ -27,6 +30,7 @@
         <div class="header">Tonight</div>
         <div class ="radio-selector-placement">
           <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+          <input type="hidden" name="country" value="Norway">
         </div>
       </div>
 
@@ -36,6 +40,7 @@
         <div class="header">Tomorrow</div>
         <div class ="radio-selector-placement">
          <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+         <input type="hidden" name="country" value="Norway">
        </div>
      </div>
 

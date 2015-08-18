@@ -1,1 +1,54 @@
-pending page
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+<% if user_signed_in? %>
+<div class="content-wrapper filtered">
+
+<div class="filters">
+  <ul>
+    <li><a href="/Recommended">Recommended</a></li>
+
+    <li><a href="/Pending">Pending</a></li>
+    <li><a href="/friends">Current</a></li>
+
+
+</ul>
+</div>
+
+<%current_user.sent_friend_requests.each do |friend| %>
+
+
+
+<div class ='friendship'>
+
+  <div class ='image'>
+    <img src="<%=raise friend.inspect %>">
+  </div>
+  <div class ="first-name "> <%= friend.first_name + " " + friend.last_name.chars.first%></div>
+
+
+  <div class ="button">Cancel</div>
+
+</div>
+<% end %>
+
+<%current_user.received_friend_requests.each do |friend| %>
+
+<div class ='friendship'>
+
+  <div class ='image'>
+    <img src="<%= friend.image %>">
+  </div>
+  <div class ="first-name "> <%= friend.first_name + " " + friend.last_name.chars.first%></div>
+
+
+  <div class ="button">Accecpt</div>
+  <div class ="button">Decline</div>
+</div>
+<% end %>
+<% end %>
+</body>
+</html>

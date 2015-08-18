@@ -46,15 +46,17 @@
         <span class="icon-bar"></span>
 
       </button>
-      <a class="navbar-brand" href="#">Rabble</a>
+      <a class="navbar-brand" href="">Rabble</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-
+      <%if user_signed_in? %>
         <li><a href="/events">Events</a></li>
         <li><a href="/friends">Friends</a></li>
+        <li><a href="/events/new">New Event</a></li>
+        <% end %>
 
       </ul>
 
