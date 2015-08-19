@@ -25,9 +25,9 @@
 <div class ='friendship'>
 
   <div class ='image'>
-    <img src="<%=raise friend.inspect %>">
+    <img src="<%= friend.reciever.image %>">
   </div>
-  <div class ="first-name "> <%= friend.first_name + " " + friend.last_name.chars.first%></div>
+  <div class ="first-name "> <%= friend.reciever.first_name + " " + friend.reciever.last_name.chars.first%></div>
 
 
   <div class ="button">Cancel</div>
@@ -40,9 +40,9 @@
 <div class ='friendship'>
 
   <div class ='image'>
-    <img src="<%= friend.image %>">
+    <img src="<%=friend.sender.image%>">
   </div>
-  <div class ="first-name "> <%= friend.first_name + " " + friend.last_name.chars.first%></div>
+  <div class ="first-name "> <%= friend.sender.first_name + " " + friend.sender.last_name.chars.first%></div>
 
 
   <div class ="button">Accecpt</div>
