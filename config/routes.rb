@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  scope "/api" do
-    resources :events
-  end
+
     devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :invites
   resources :attendances

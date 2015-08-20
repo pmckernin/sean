@@ -730,46 +730,39 @@ Everything relatating to the friendship tile
 /*=========================================================================
 Everything Relating to the New Event Form*/
 
-    .form-group .title{
-        position: inline;
+    .description-input{
+        height: 40px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 20px;
+    }
 
-        height: 75px;
-        width: 100%;
+    #Starting-time-label{
+        padding-top: 20px;
+        font-size: 40px;
+        text-align: center;
+        padding-bottom: 20px;
+    }
 
-        font-size: 50px;
+     #Description-label{
+        padding-top: 10px;
+        font-size: 40px;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+
+    .start-time-selection{
+        font-size: 25px;
+        padding-bottom: 1   0px;
         text-align: center;
     }
 
-    .form-group .header{
-        position:inline;
-        height:50px;
-        width:100%;
-        margin-top: 25px;
 
-        font-size: 30px;
-        text-align: center;
+    #dropper{
+        font-size: 20px;
     }
 
-    .form-group .starting-selector{
-        position: inline;
-        height: 150px;
-        width: 100%;
-        margin-left: 200px;
-    }
-
-    #selector-one{
-        position: absolute;
-            height:250px;
-            width: 200px;
-    }
-
-     #selector-two{
-        position: absolute;
-                left: 600px;
-
-        height:250px;
-        width: 200px;
-    }
 
     #break-one{
         position: absolute;
@@ -806,7 +799,7 @@ Everything Relating to the New Event Form*/
         width: 10px;
     }
 
-    #create-button-placement{
+    .button-placement{
         width: 0px;
         padding-top: 20px;
         margin-left:auto;
